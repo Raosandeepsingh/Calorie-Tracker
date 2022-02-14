@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Height</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Age</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of allUser; index as i;">
+        <td>{{item.name}}</td>
+        <td>{{item.Weight}}</td>
+        <td>{{item.Height}}</td>
+        <td>{{item.gender}}</td>
+        <td>{{item.Age}}</td>
+        <td><i class="fa fa-eye" (click)="getLogin(item.email,item.password)"
+            style="font-size:30px;color:rgb(216, 191, 191)"></i>
+          <i class="fa fa-trash"  (click)="deleteData(item._id)" style="font-size:30px;color:red;margin-right: 20px; cursor: pointer; margin-left: 20px;"></i>
+          <!-- <i class="fa fa-edit" style="font-size:30px;color:rgb(98, 178, 243);"></i> -->
+
+        </td>
+
+        <!-- <td><button">Calculate</button></td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

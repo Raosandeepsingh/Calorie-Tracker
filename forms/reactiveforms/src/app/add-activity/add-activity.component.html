@@ -1,0 +1,41 @@
+
+<div class="Container-fluid">
+<h1 class="mt-4">Add activity</h1>
+<hr>
+<form (ngSubmit)="onSubmit()"  [formGroup]="addactivity">
+   <div class="form-group">
+    <label for="exampleFormControlSelect1">Date :  </label>
+    <input type="date" name="birthday" (change)="userData()" formControlName="date"> 
+   </div>
+    <div class="form-group" >
+      <label for="exampleFormControlSelect1">Activity Name </label>
+      <select class="form-control" id="exampleFormControlSelect1"formControlName="activityName" (change)="activityNameChange()">
+        <option *ngFor="let activityName of activitytyData" [value]="activityName._id">
+            {{activityName._id}}
+          </option>
+        
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect2">Activity Description </label>
+      <select class="form-control" id="exampleFormControlSelect2" formControlName="activityDescription" (change)="activityDescriptionChange()">
+        <option *ngFor="let activityName of activityDescription" [value]="activityName._id">
+            {{activityName["SPECIFIC MOTION"]}}
+          </option>
+      </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Time </label>
+        <input type="number" class="form-control" id="exampleFormControlInput1" formControlName="time" (change)="activitytimeChange()">
+      </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">MET Value </label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="metValue" readonly>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add-Activity</button>
+
+
+      <h2> Calori Out : {{caloriesOut }}</h2>
+  </form>
+</div>

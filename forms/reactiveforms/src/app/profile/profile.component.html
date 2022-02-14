@@ -1,0 +1,48 @@
+
+<app-navbar></app-navbar>
+<div class="container">
+  <h1 style="color: cadetblue;" >Profile</h1>
+  <!-- <button routerLink="/alluser" >DashBord</button> -->
+  <hr>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Height</th>
+      <th scope="col">dob</th>
+      <th scope="col">username</th>
+      <th scope="col">email</th>
+      <th scope="col">Age</th>
+      <th scope="col">Gender</th>
+      <th scope="col">BMR</th>
+      <th scope="col">operation</th>
+      <th scope="col">View</th>
+</tr>
+  </thead>
+  <tbody>
+    <tr *ngIf="DisplayData">
+      <td>{{DisplayData.name}}</td>
+      <td>{{DisplayData.Weight}}</td>
+      <td>{{DisplayData.Height}}</td>
+      <td>{{DisplayData.dob}}</td>
+      <td>{{DisplayData.username}}</td>
+      <td>{{DisplayData.email}}</td>
+      <td>{{DisplayData.Age}}</td>
+      <td>{{DisplayData.gender}}</td>
+      <td>{{DisplayData.bmr}}</td>
+      
+
+      <!-- <td><i class="fa fa-trash" style="font-size:30px;color:red;margin-right: 20px;"></i>
+        <i class="fa fa-edit" style="font-size:30px;color:rgb(98, 178, 243);"></i></td> -->
+      <td>  <a routerLink='/food' style="color: rgb(211, 114, 114);">Add-Data</a></td>
+      <td><i class="fa fa-eye" routerLink="/view" style="font-size:30px;color:rgb(216, 191, 191)"></i></td>
+  
+    
+
+
+      
+    </tr>
+  </tbody>
+</table>
+</div>

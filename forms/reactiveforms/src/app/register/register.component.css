@@ -1,0 +1,10 @@
+
+ 
+ h1{
+   color: rgb(37, 150, 190);
+}
+
+.form-control{
+    border: none;
+    border-bottom: 1px solid black;
+}

@@ -1,0 +1,62 @@
+
+<app-navbar></app-navbar>
+<div class="container mt-5">
+
+  
+
+  <h3 class="text-center" style="color: coral;">Check Net Calorie and Activity & food Data</h3>
+  <hr>
+  <form action="/action_page.php" (change)="onChange()" [formGroup]="getData">
+    <label for="birthday"><strong>Check Details :</strong> </label>
+    <br>
+    <input type="date" id="birthday" name="birthday" (change)="userActivityData()" formControlName="date">
+   
+   </form>
+    <h4 class="alert-success text-center"  *ngIf="getData.controls['date'].value  && netCalorie">Net Calories per day  : {{netCalorie}}</h4> 
+
+
+ 
+
+
+    
+    <table class="table" *ngIf="getData.controls['date'].value && activityUserData.length">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Activity Name</th>
+          <th scope="col">calorie Out</th>
+          <th scope="col">Time Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <tr *ngFor="let item of activityUserData; index as i;">
+            <td>{{item.userDate}}</td>
+            <td>{{item["activity name"]}}</td>
+            <td>{{item.calorieOut}}</td>
+            <td>{{item.Time}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="table"  *ngIf="getData.controls['date'].value && foodUserData && foodUserData.length">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Food Group</th>
+          <th scope="col">serving</th>
+          <th scope="col"> calorieIn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <tr *ngFor="let item of foodUserData; index as i;">
+            <td>{{item.userDate}}</td>
+            <td>{{item.group}}</td>
+            <td>{{item.serving}}</td>
+            <td>{{item.calorie}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>

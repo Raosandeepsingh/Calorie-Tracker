@@ -1,0 +1,25 @@
+<form [formGroup]="Login" id="loginform" (ngSubmit)="onSubmit()">
+  <h1 class="text-center"> Login </h1>
+  <div class="form-group">
+    <div style="color: red;" class=" alert-danger text-center">
+      {{massage}}
+    </div>
+    <h5  class=""></h5>
+    <label for="exampleInputEmail1">Username</label>
+    <input type="Text" class="form-control" #check placeholder="Enter Username/E-mail" formControlName="username">
+
+
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" placeholder="Password" formControlName="password">
+    <div
+      *ngIf="Login.controls['password'].invalid && (Login.controls['password'].dirty || Login.controls['password'].touched)"
+      class="alert">
+      <div style="color: rgb(236, 25, 18);" *ngIf="Login.controls['password'].errors">
+        password is required
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>

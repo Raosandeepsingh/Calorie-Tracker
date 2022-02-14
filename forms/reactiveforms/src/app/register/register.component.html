@@ -1,0 +1,115 @@
+<form [formGroup]="register" class="loginform" (ngSubmit)="onSubmit()">
+  <h1 class="text-center">Register</h1>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Name</label>
+    <input type="Text" class="form-control" placeholder="Enter Name" formControlName="name">
+    <div
+      *ngIf="register.controls['name'].invalid && (register.controls['name'].dirty || register.controls['name'].touched)"
+      class="alert">
+      <div style="color: red;"
+        *ngIf="register.controls['name'].errors">
+        Please enter username
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Weight</label>
+    <input type="text" class="form-control" placeholder="Enter Weight" formControlName="Weight">
+    <div
+      *ngIf="register.controls['Weight'].invalid && (register.controls['Weight'].dirty || register.controls['Weight'].touched)"
+      class="alert">
+      <div style="color: red;" *ngIf="register.controls['Weight'].errors">
+        Please Enter Your Weight in Number
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Height</label>
+    <input type="text" class="form-control" placeholder="Enter Height" formControlName="Height">
+    <div
+      *ngIf="register.controls['Height'].invalid && (register.controls['Height'].dirty || register.controls['Height'].touched)"
+      class="alert">
+      <div style="color: red;" *ngIf="register.controls['Height'].errors">
+        Please Enter Your Height in Number
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Date of birth</label>
+    <input type="date" #Date class="form-control" placeholder="Enter Date of birth" formControlName="dob">
+
+
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+    <input type="Text" class="form-control" placeholder="Enter Name" formControlName="username">
+    <div
+      *ngIf="register.controls['username'].invalid && (register.controls['username'].dirty || register.controls['username'].touched)"
+      class="alert">
+      <div style="color: red;" *ngIf="register.controls['username'].errors">
+        Please enter username
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+    <div
+      *ngIf="register.controls['email'].invalid && (register.controls['email'].dirty || register.controls['email'].touched)"
+      class="alert">
+      <div style="color: red;" *ngIf="register.controls['email'].errors">
+        {{commonValidation(register.controls['email'].errors ,"email")}}
+
+      </div>
+    </div>
+
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="text" class="form-control" placeholder="Password" formControlName="password">
+    <div
+      *ngIf="register.controls['password'].invalid && (register.controls['password'].dirty || register.controls['password'].touched)"
+      class="alert">
+      <div style="color: red;" *ngIf="register.controls['password'].errors">
+        {{commonValidation(register.controls['password'].errors,"password")}}
+
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Confirm Password</label>
+    <input type="text" class="form-control" placeholder=" Confirm Password" formControlName="cpassword">
+    <div
+      *ngIf="register.controls['cpassword'].invalid && (register.controls['cpassword'].dirty || register.controls['cpassword'].touched)"
+      class="alert">
+      <div style="color: red;" *ngIf="register.controls['cpassword'].errors">
+        <!-- Confirm Password is Required -->
+        {{commonValidation(register.controls['cpassword'].errors , "confirm_password") }}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="gender">Gender</div>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" value="M" checked formControlName="gender">
+          <label class="form-check-label" for="gridRadios1">
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="gender" value="F" formControlName="gender">
+          <label class="form-check-label" for="gridRadios2">
+            Female
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" routerLink="">Register </button>
+
+</form>
