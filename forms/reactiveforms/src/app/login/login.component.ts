@@ -24,22 +24,17 @@ export class LoginComponent implements OnInit {
   });
 
   onSubmit() {
-    // console.log(this.Login.value)
     let userNameKey = this.validateEmail(this.Login.value.username)
     let userLoginDetail: any = { "password": this.Login.value.password }
     if (userNameKey) userLoginDetail.email = this.Login.value.username;
     else userLoginDetail.username = this.Login.value.username;
-    // console.log(userLoginDetail)
 
     this.login.saveLoginData(userLoginDetail).subscribe((res: any) => {
-      // console.log(res);
       let logindata: any = res.data;
-      // console.log()
       this.saveLoginData(logindata);
     })
   }
   saveLoginData(data: any) {
-    console.log(data)
     localStorage.removeItem('logindata');
     if (data) {
       localStorage.setItem('logindata', JSON.stringify(data));

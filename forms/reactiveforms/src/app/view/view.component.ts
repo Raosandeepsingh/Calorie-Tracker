@@ -35,7 +35,6 @@ export class ViewComponent implements OnInit {
     let loginData: any = localStorage.getItem('logindata');
     let loginDataParse = JSON.parse(loginData);
     this.bmr = loginDataParse.bmr
-    // console.log("calin", this.selectFoodData, this.bmr, this.selectActivityData)
     if (this.bmr && this.selectFoodData) {
       this.netCalorie = this.selectFoodData - this.bmr - this.selectActivityData
     } else {

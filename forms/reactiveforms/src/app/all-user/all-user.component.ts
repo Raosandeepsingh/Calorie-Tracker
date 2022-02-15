@@ -21,16 +21,13 @@ export class AllUserComponent implements OnInit {
   }
   getAllUser() {
     this.userService.getAllUserList().subscribe((res: any) => {
-      // console.log(res)
       this.allUser = res;
-      // console.log(this.allUser)
     });
   }
 
   deleteData(_id: any) {
     console.log(_id)
     this.userService.deleteData({ _id: _id }).subscribe((res: any) => {
-      // console.log(res)
       this.getAllUser();
 
     })
@@ -39,9 +36,7 @@ export class AllUserComponent implements OnInit {
   getLogin(email: any, pass: any) {
 
     this.userService.saveLoginData({ email: email, password: pass }).subscribe((res: any) => {
-      // console.log(res);
       let logindata: any = res.data;
-      // console.log(logindata)
       this.storeLoginInfo(res.data)
 
     })

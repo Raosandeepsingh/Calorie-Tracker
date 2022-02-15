@@ -37,10 +37,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { }
 
   dataobj: any
-  onSubmit() {
-    // console.log(this.register); 
+  onSubmit() { 
     this.userservics.saveRegisterData(this.register.value).subscribe((result) => {
-      // console.log(result);
   })
 this.resetformData();
   

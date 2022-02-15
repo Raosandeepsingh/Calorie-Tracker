@@ -75,16 +75,16 @@ router.get('/getAllfood', async function (req, res, next) {
       _id: "$Food Group"
     }
   }]).toArray()
-  console.log(foodData);
+  // console.log(foodData);
   res.send(foodData || 'data not found')
 
 });
 
 router.get('/getFoodGroupByName',async function (req, res, next) {
   let query = {...req.query, status: 1 };
-  console.log("query",query);
+  // console.log("query",query);
     let foodName = await foodCollection.find({"Food Group": query.fGroup}).toArray()
-    console.log(foodName)
+    // console.log(foodName)
     res.send(foodName);
 });
 router.post('/saveFoodData',(req, res) => {
@@ -105,9 +105,9 @@ router.post('/saveFoodData',(req, res) => {
 
 router.get('/diplayFoodData',async function (req, res, next) {
   let query = {...req.query, status: 1 };
-  console.log("query",query);
+  // console.log("query",query);
     let foodName = await addFoodCollection.find({"userDate":query.aData,userID:query.userId}).toArray()
-    console.log(foodName)
+    // console.log(foodName)
     res.send(foodName);
 });
 
