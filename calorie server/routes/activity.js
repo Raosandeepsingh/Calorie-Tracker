@@ -5,18 +5,11 @@ var { activityCollection, addActivityCollection } = require('../db/collections')
 const { commonStatus } = require('../db/commonStatus');
 const readXlsxFile = require('read-excel-file/node');
 
-
-
-
-
 router.get('/createActivity', function (req, res, next) {
-  console.log(req.query)
+  // console.log(req.query)
   var allUsers = userCollection.insertOne(req.query)
   res.send(allUsers);
 });
-
-
-
 
 router.get('/getAllActivity', async function (req, res, next) {
   let activityData = await activityCollection.aggregate([{
@@ -24,22 +17,21 @@ router.get('/getAllActivity', async function (req, res, next) {
       _id: "$ACTIVITY"
     }
   }]).toArray()
-  console.log(activityData);
+  // console.log(activityData);
   res.send(activityData || 'data not found')
 });
 router.get('/getDescriptionByName', async function (req, res, next) {
   let query = { ...req.query, status: 1 };
-  console.log("query", query);
+  // console.log("query", query);
   let activitydescription = await activityCollection.find({ "ACTIVITY": query.aName }).toArray()
-  console.log(activitydescription)
+  // console.log(activitydescription)
   res.send(activitydescription);
 });
 
 router.post('/saveActivityData', (req, res) => {
   console.log(req.body)
   addActivityCollection.insertOne({
-    userDate:req.body.date,
-   
+    userDate: req.body.date,
     userID: req.body.userId,
     calorieOut: req.body.calorieOut,
     ["activity name"]: req.body.activityName,
@@ -55,18 +47,18 @@ router.post('/saveActivityData', (req, res) => {
 router.get('/getAllActivityData', function (req, res, next) {
   userCollection.find({ status: commonStatus.active }).toArray().then((err, allActivitData) => {
     res.send(allActivitData);
-    console.log('sahgwuefgeuvdvscgsvcdskctvewk',allActivitData)
+    console.log('sahgwuefgeuvdvscgsvcdskctvewk', allActivitData)
   })
 });
 
 
-router.get('/diplayActivityData',async function (req, res, next) {
-  let query = {...req.query, status: 1 };
-  console.log("query",query);
-  console.log({"userDate": query.aData,userID:query.userId})
-    let foodName = await addActivityCollection.find({"userDate": query.aData,userID:query.userId}).toArray()
-  console.log(foodName)
-    res.send(foodName);
+router.get('/diplayActivityData', async function (req, res, next) {
+  let query = { ...req.query, status: 1 };
+  // console.log("query", query);
+  console.log({ "userDate": query.aData, userID: query.userId })
+  let foodName = await addActivityCollection.find({ "userDate": query.aData, userID: query.userId }).toArray()
+  // console.log(foodName)
+  res.send(foodName);
 });
 
 

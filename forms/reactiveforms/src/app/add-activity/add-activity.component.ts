@@ -20,11 +20,11 @@ export class AddActivityComponent implements OnInit {
   constructor(private userservics: UserService,
     private formbuilder: FormBuilder) {
     this.addactivity = this.formbuilder.group({
-      date: new FormControl('',[Validators.required]),
-      activityName: new FormControl('',[Validators.required]),
-      activityDescription: new FormControl('',[Validators.required]),
-      time: new FormControl('',[Validators.required]),
-      metValue: new FormControl('',[Validators.required]),
+      date: new FormControl('', [Validators.required]),
+      activityName: new FormControl('', [Validators.required]),
+      activityDescription: new FormControl('', [Validators.required]),
+      time: new FormControl('', [Validators.required]),
+      metValue: new FormControl('', [Validators.required]),
     })
   }
 
@@ -47,29 +47,23 @@ export class AddActivityComponent implements OnInit {
 
   userData() {
     let fGroup = this.addactivity.controls['date'].value;
-    this.userservics.DisplayFoodGroup({ fGroup }).subscribe((res) => {
-      //  this.foodName = res;
-      console.log(res)
-    })
+    this.userservics.DisplayFoodGroup({ fGroup }).subscribe((res) => { })
   }
   activityNameChange() {
     let aName = this.addactivity.controls['activityName'].value;
     this.userservics.displayActivityName({ aName }).subscribe((res) => {
       this.activityDescription = res;
-      // console.log(this.activityDescription)
     })
   }
   activityDescriptionChange() {
     let aDescription = this.addactivity.controls['activityDescription'].value;
     this.selectActivityData = this.activityDescription.find((a: any) => a._id === aDescription)
-  
+
   }
 
   activitytimeChange() {
     this.aTime = this.addactivity.controls['time'].value;
-    // console.log(this.aTime, this.selectActivityData)
     let metVal = Number(this.aTime) * Number(this.selectActivityData.METs);
-    // console.log(metVal)
     this.met = metVal
     this.addactivity.controls['metValue'].setValue(metVal)
   }
@@ -81,15 +75,14 @@ export class AddActivityComponent implements OnInit {
     let bmr = loginDataParse.bmr;
     this.caloriesOut = Number(this.met) * Number(weight) * Number(this.aTime);
     this.userservics.saveActivityData({ ...this.addactivity.value, calorieOut: this.caloriesOut, userId: loginDataParse._id, }).subscribe((res) => {
-      // console.log(res);
       this.saveActivityData = res
-
     })
-         this.resetformData()   
+
+    this.resetformData()
   }
 
 
-  resetformData(){
+  resetformData() {
     this.addactivity.reset();
   }
 }

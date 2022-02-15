@@ -7,17 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-userloginRecord : any;
-oldUserLoginRecord :any
+  userloginRecord: any;
+  oldUserLoginRecord: any
   constructor(
-    private router :Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-let newUser = localStorage.getItem('logindata');
-let oldUser= localStorage.getItem('oldLogindata') ;
-    this.oldUserLoginRecord = oldUser ? JSON.parse(oldUser):'';
-    this.userloginRecord = newUser ? JSON.parse(newUser):'';
+    let newUser = localStorage.getItem('logindata');
+    let oldUser = localStorage.getItem('oldLogindata');
+    this.oldUserLoginRecord = oldUser ? JSON.parse(oldUser) : '';
+    this.userloginRecord = newUser ? JSON.parse(newUser) : '';
 
 
   }
