@@ -91,6 +91,7 @@ router.post('/saveFoodData',(req, res) => {
   console.log(req.body)
   addFoodCollection.insertOne({
     userDate:req.body.date,
+    mealType:req.body.mealType,
     userID:req.body.userId,
     group: req.body.group,
     _id:req.body.name,

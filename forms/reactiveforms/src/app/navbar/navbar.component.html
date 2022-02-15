@@ -1,34 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand navbar-dark bg-primary">
 
     <div class="container-fluid">
-        <div class="d-flex">
-
-            <a class="navbar-brand" href="#">Calorie Tracker</a>
-
-
-            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent ">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/alluser">DashBord</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " routerLink="/profile">profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " routerLink="/food">Add-Data</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " routerLink="/alluser">Logout</a>
-                    </li>
-                </ul>
+        <div class="row">
+            <div class="col-md-4">
+                <a class="navbar-brand" href="#">Calorie Tracker</a>
             </div>
+            <div class="col-md-8">
+                <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent ">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"
+                            *ngIf="userloginRecord && userloginRecord.role == 0 && !oldUserLoginRecord">
+                            <a class="nav-link" routerLink="/alluser">DashBord</a>
+                        </li>
 
+                        <li class="nav-item" *ngIf="userloginRecord">
+                            <a class="nav-link " routerLink="/profile">profile</a>
+                        </li>
+                        <li class="nav-item" *ngIf="userloginRecord">
+                            <a class="nav-link " routerLink="/food">Add-Data</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " (click)="logOutUser()">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-
-
-
-
 </nav>
+

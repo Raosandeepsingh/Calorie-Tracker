@@ -31,7 +31,7 @@ export class AllUserComponent implements OnInit {
     console.log(_id)
     this.userService.deleteData({ _id: _id }).subscribe((res: any) => {
       // console.log(res)
-    this.getAllUser();
+      this.getAllUser();
 
     })
   }
@@ -52,6 +52,25 @@ export class AllUserComponent implements OnInit {
     localStorage.setItem('logindata', JSON.stringify(userData));
     localStorage.setItem('oldLogindata', loginData);
     this.router.navigate(['/view']);
+  }
+
+  logOutUser() {
+
+    let newUser: any = localStorage.getItem('logindata');
+    let oldUser: any = localStorage.getItem('oldLogindata');
+    let oldlogindatas = oldUser ? JSON.parse(oldUser) : '';
+    let logindatas = newUser ? JSON.parse(newUser) : '';
+    if (oldlogindatas) {
+      localStorage.setItem('logindata', oldUser);
+      localStorage.removeItem('oldLogindata')
+      this.router.navigate(['/alluser']);
+
+    } else {
+      localStorage.removeItem('logindata')
+      this.router.navigate(['/']);
+
+
+    }
 
 
   }

@@ -19,7 +19,7 @@
 
 
     
-    <table class="table" *ngIf="getData.controls['date'].value && activityUserData.length">
+    <table class="table" *ngIf="getData.controls['date'].value && activityUserData && activityUserData.length">
       <thead class="thead-light">
         <tr>
           <th scope="col">Date</th>
@@ -43,6 +43,7 @@
       <thead class="thead-light">
         <tr>
           <th scope="col">Date</th>
+          <th scope="col">Meal Type</th>
           <th scope="col">Food Group</th>
           <th scope="col">serving</th>
           <th scope="col"> calorieIn</th>
@@ -52,6 +53,7 @@
         <tr>
           <tr *ngFor="let item of foodUserData; index as i;">
             <td>{{item.userDate}}</td>
+            <td>{{item.mealType}}</td>
             <td>{{item.group}}</td>
             <td>{{item.serving}}</td>
             <td>{{item.calorie}}</td>

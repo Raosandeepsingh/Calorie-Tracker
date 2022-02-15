@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../servics/user.service';
-import { FormGroup, FormControl, FormBuilder, } from '@angular/forms'
-
+import { FormGroup, FormControl, FormBuilder, Validators, } from '@angular/forms'
 @Component({
   selector: 'app-add-activity',
   templateUrl: './add-activity.component.html',
@@ -21,11 +20,11 @@ export class AddActivityComponent implements OnInit {
   constructor(private userservics: UserService,
     private formbuilder: FormBuilder) {
     this.addactivity = this.formbuilder.group({
-      date: new FormControl(''),
-      activityName: new FormControl(''),
-      activityDescription: new FormControl(''),
-      time: new FormControl(''),
-      metValue: new FormControl(''),
+      date: new FormControl('',[Validators.required]),
+      activityName: new FormControl('',[Validators.required]),
+      activityDescription: new FormControl('',[Validators.required]),
+      time: new FormControl('',[Validators.required]),
+      metValue: new FormControl('',[Validators.required]),
     })
   }
 
@@ -39,9 +38,7 @@ export class AddActivityComponent implements OnInit {
       // console.log(loginData)
       if (loginDataParse && loginDataParse._id) {
         this.userservics.DisplayUserData({ _id: loginDataParse._id }).subscribe((data) => {
-          // console.log('dataid', data)
           this.ActivityUserName = data;
-          // console.log('UserName', this.ActivityUserName._id)
         })
       }
 
@@ -64,10 +61,8 @@ export class AddActivityComponent implements OnInit {
   }
   activityDescriptionChange() {
     let aDescription = this.addactivity.controls['activityDescription'].value;
-    // console.log(aDescription)
     this.selectActivityData = this.activityDescription.find((a: any) => a._id === aDescription)
-    // console.log(this.selectActivityData)
-    // console.log(aDescription)
+  
   }
 
   activitytimeChange() {
@@ -82,17 +77,19 @@ export class AddActivityComponent implements OnInit {
   onSubmit() {
     let loginData: any = localStorage.getItem('logindata');
     let loginDataParse = JSON.parse(loginData);
-    // let met = loginDataParse.METs;
     let weight = loginDataParse.Weight;
-    // let duration = loginDataParse.time
     let bmr = loginDataParse.bmr;
     this.caloriesOut = Number(this.met) * Number(weight) * Number(this.aTime);
-    // console.log(this.caloriesOut)
     this.userservics.saveActivityData({ ...this.addactivity.value, calorieOut: this.caloriesOut, userId: loginDataParse._id, }).subscribe((res) => {
       // console.log(res);
       this.saveActivityData = res
 
     })
+         this.resetformData()   
+  }
 
+
+  resetformData(){
+    this.addactivity.reset();
   }
 }
