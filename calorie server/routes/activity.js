@@ -39,6 +39,7 @@ router.post('/saveActivityData', (req, res) => {
   console.log(req.body)
   addActivityCollection.insertOne({
     userDate:req.body.date,
+   
     userID: req.body.userId,
     calorieOut: req.body.calorieOut,
     ["activity name"]: req.body.activityName,
@@ -64,7 +65,7 @@ router.get('/diplayActivityData',async function (req, res, next) {
   console.log("query",query);
   console.log({"userDate": query.aData,userID:query.userId})
     let foodName = await addActivityCollection.find({"userDate": query.aData,userID:query.userId}).toArray()
-    console.log(foodName)
+  console.log(foodName)
     res.send(foodName);
 });
 

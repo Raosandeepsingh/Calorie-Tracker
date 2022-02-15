@@ -1,4 +1,3 @@
-
 <app-navbar></app-navbar>
 
 <div class="container">
@@ -6,51 +5,58 @@
     <div class="col-md-6">
       <h1 class="mt-4">Add FOOD</h1>
       <hr>
-      <form [formGroup]="addfood"  (ngSubmit)="onSubmit()">
+      <form [formGroup]="addfood" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="exampleFormControlSelect1">Date :  </label>
-          <input type="date" name="birthday" (change)="userData()" formControlName="date"> 
+          <label for="exampleFormControlSelect1">Date : </label>
+          <input type="date" name="birthday" (change)="userData()" formControlName="date">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Meal type</label>
+          <select class="form-control" formControlName="mealType" (change)="foodGroupChange()">
+            <option> breakfast</option>
+            <option> lunch</option>
+            <option>  dinner</option>
+            <option>  snack</option>
+
+          </select>
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect1">Food Group</label>
-          <select class="form-control"  formControlName="group"  (change)="foodGroupChange()">
+          <select class="form-control" formControlName="group" (change)="foodGroupChange()">
             <option *ngFor="let fgroup of foodGroup" [value]="fgroup._id">
               {{fgroup._id}}
             </option>
-    
           </select>
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect1">food Name</label>
-          <select class="form-control"  formControlName="name"  (change)="foodNameChange()">
+          <select class="form-control" formControlName="name" (change)="foodNameChange()">
             <option *ngFor="let fName of foodName" [value]="fName._id">
               {{fName.name}}
             </option>
           </select>
         </div>
-        
+
         <div class="form-group">
           <label for="formGroupExampleInput">serving</label>
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" 
-           formControlName="serving"
-          (change)="foodServingChange()" >
+          <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Example input"
+            formControlName="serving" (change)="foodServingChange()">
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect1">Calorie</label>
-    
-          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" 
-           formControlName="calorie" readonly  (change)="netCalorie()">
-    
+
+          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input"
+            formControlName="calorie" readonly >
+
         </div>
-      
-    <button type="submit" class="btn btn-primary">Add-Food</button>
-    
-    <h2>Calorie In : {{cal}}</h2>
+
+        <button type="submit" class="btn btn-primary">Add-Food</button>
+
+        <h2>Calorie In : {{cal}}</h2>
       </form>
     </div>
-    <div class="col-md-6"><app-add-activity></app-add-activity></div>
+    <div class="col-md-6">
+      <app-add-activity></app-add-activity>
     </div>
   </div>
- 
-
-
+</div>

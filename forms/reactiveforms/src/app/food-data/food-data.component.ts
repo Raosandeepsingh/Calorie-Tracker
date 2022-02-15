@@ -1,9 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../servics/user.service';
-import { FormGroup, FormControl, FormBuilder, } from '@angular/forms'
-import { NULL_EXPR } from '@angular/compiler/src/output/output_ast';
+import { FormGroup, FormControl, FormBuilder, Validators, } from '@angular/forms'
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-food-data',
@@ -23,16 +21,18 @@ export class FoodDataComponent implements OnInit {
   cal: any;
   bmr: any;
   netCalorie: any
-  
+  fServing: any
+
   constructor(private userservics: UserService,
     private formbuilder: FormBuilder,
-    private router:Router) {
+    private router: Router) {
     this.addfood = this.formbuilder.group({
-      date:new FormControl(''),
-      group: new FormControl(''),
-      name: new FormControl(''),
-      serving: new FormControl(''),
-      calorie: new FormControl(''),
+      date: new FormControl('',[Validators.required]),
+      group: new FormControl('',[Validators.required]),
+      mealType: new FormControl('',[Validators.required]),
+      name: new FormControl('',[Validators.required]),
+      serving: new FormControl('',[Validators.required]),
+      calorie: new FormControl('',[Validators.required]),
     })
     //  this.userName=this.userservics.getUserName('')
     //  console.log( 'name',this.userName)
@@ -41,14 +41,15 @@ export class FoodDataComponent implements OnInit {
     this.userservics.foodUserData({}).subscribe((res: any) => {
       // console.log(res)
       this.foodGroup = res;
-    
+
     });
   }
-  userData(){
+
+  userData() {
     let fGroup = this.addfood.controls['date'].value;
     this.userservics.DisplayFoodGroup({ fGroup }).subscribe((res) => {
-  //  this.foodName = res;
-  //  console.log(res)
+      //  this.foodName = res;
+      //  console.log(res)
     })
   }
   foodGroupChange() {
@@ -65,28 +66,35 @@ export class FoodDataComponent implements OnInit {
   }
 
   foodServingChange() {
-    let fServing = this.addfood.controls['serving'].value;
-    console.log(fServing, this.selectFoodData)
-    let calorie = Number(fServing) * Number(this.selectFoodData.Calories);
-    // console.log(calorie)
+    this.fServing = this.addfood.controls['serving'].value;
+    console.log(this.fServing, this.selectFoodData)
+    let calorie = Number(this.fServing) * Number(this.selectFoodData.Calories);
     this.cal = calorie
     this.addfood.controls['calorie'].setValue(calorie)
+
+    // console.log(calorie)
+
   }
-  
-onSubmit() {
+
+  onSubmit() {
+
+
     let loginData: any = localStorage.getItem('logindata');
     let loginDataParse = JSON.parse(loginData);
     this.bmr = loginDataParse.bmr
     this.userservics.savefoodData({ ...this.addfood.value, userId: loginDataParse._id }).subscribe((res) => {
       // console.log(res);
     })
-
-
+    this.resetformData()
   }
 
-  logOutUser(){
+  resetformData() {
+    this.addfood.reset();
+  }
+
+  logOutUser() {
     let loginData: any = localStorage.getItem('oldLogindata');
-    localStorage.setItem('logindata',loginData);
+    localStorage.setItem('logindata', loginData);
     localStorage.removeItem('oldLogindata');
     this.router.navigate(['/alluser']);
   }

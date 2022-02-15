@@ -10,7 +10,7 @@ export class ViewComponent implements OnInit {
   activityUserData: any;
   foodUserData: any;
   getData: FormGroup;
-  netCalorie: any=0;
+  netCalorie: any = 0;
   selectActivityData: any = 0;
   selectFoodData: any = 0;
   bmr: any = 0;
@@ -36,12 +36,12 @@ export class ViewComponent implements OnInit {
     let loginDataParse = JSON.parse(loginData);
     this.bmr = loginDataParse.bmr
     // console.log("calin", this.selectFoodData, this.bmr, this.selectActivityData)
-    if(this.bmr && this.selectFoodData){
+    if (this.bmr && this.selectFoodData) {
       this.netCalorie = this.selectFoodData - this.bmr - this.selectActivityData
-    }else{
+    } else {
       this.netCalorie = 0;
-       }
-  console.log(this.netCalorie)
+    }
+    console.log(this.netCalorie)
   }
   userActivityData() {
     let loginD: any = localStorage.getItem('logindata');

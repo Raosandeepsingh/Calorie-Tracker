@@ -42,8 +42,11 @@ export class RegisterComponent implements OnInit {
     this.userservics.saveRegisterData(this.register.value).subscribe((result) => {
       // console.log(result);
   })
-  this.register.value.reset('')
+this.resetformData();
   
+  }
+  resetformData() {
+    this.register.reset();
   }
 
   commonValidation(valErr: any, fieldName: string, type?: string) {
